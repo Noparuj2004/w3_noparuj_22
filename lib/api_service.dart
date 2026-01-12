@@ -12,10 +12,8 @@ class ApiService {
     if (response.statusCode == 200) {
       final List data = jsonDecode(response.body);
       return data.map((e) => User.fromJson(e)).toList();
-    }else{
+    } else {
       throw Exception('Load data not success');
     }
-
-    return fetchUser();
   }
 }

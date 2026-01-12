@@ -65,7 +65,27 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: FutureBuilder<List<User>>(
         future: ApiService.fetchUser(),
-      )
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('An Error Occurred'));
+          }
+
+          final users = snapshot.data!;
+
+          return ListView.builder(
+            itemCount: users.length,
+            itemBuilder: (context, index){
+              final user = users[index];
+
+              return Container(child: Row(children: [Text(user.name)],),);
+            },
+          );
+        },
+      ),
     );
   }
 }
