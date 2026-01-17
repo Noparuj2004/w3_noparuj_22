@@ -2,7 +2,7 @@ class User {
   final String id;
   final String name;
   final String avatar;
-  final String age;
+  final int age;
   final String birthdate;
   final String city;
 
@@ -20,7 +20,7 @@ class User {
       id: json['id'].toString(),
       name: json['name'] ?? '',
       avatar: json['avatar'] ?? '',
-      age: json['age'].toString(),
+      age: json['age'],
       birthdate: json['birthdate'] ?? '',
       city: json['city'] ?? '',
     );
